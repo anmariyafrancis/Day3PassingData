@@ -25,8 +25,8 @@ class ViewController: UIViewController {
         if let name = self.txtName.text
         {
             secondVC.name=name
-            //self.navigationController?.pushViewController(secondVC, animated: true)0
-            self.present(secondVC,animated: true,completion: nil) //to hide back button
+            self.navigationController?.pushViewController(secondVC, animated: true)
+            //self.present(secondVC,animated: true,completion: nil)
         }
     }
 }
