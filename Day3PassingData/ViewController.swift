@@ -8,13 +8,23 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource
+{
+    
+    
 
     @IBOutlet weak var txtName: UITextField!
+    
+    @IBOutlet weak var pickerCountry: UIPickerView!
+    
+    var countryList=["India","Canada","USA","UK","Nepal","Russia","SriLanka","Pakistan"]
+    var codeList=["IN","CA","US","UK","NE","RU","SR","PA"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        pickerCountry.delegate=self
+        pickerCountry.dataSource=self
     }
 
     @IBAction func btnGoNext(_ sender: UIButton)
@@ -29,5 +39,36 @@ class ViewController: UIViewController {
             //self.present(secondVC,animated: true,completion: nil)
         }
     }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 2
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if component==0
+        {
+        return self.countryList.count
+        }
+        return codeList.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+       if component==0
+       {
+        return countryList[row]
+        }
+        return codeList[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if component==0
+        {
+        print(countryList[row])
+        }
+        else
+        {
+            print(countryList[row])
+        }
+    }
+    
 }
 
